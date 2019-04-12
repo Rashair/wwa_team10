@@ -1,0 +1,16 @@
+#address {
+    width:20em;
+}
+
+#deliveryParameters {
+    width: 20em;
+}
+
+fieldset.formRow {
+    border:none;
+}
+
+fieldset.formRow > input {
+    float: right;
+    width: 50%;
+}

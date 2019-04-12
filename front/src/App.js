@@ -1,6 +1,7 @@
 import React from "react"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import Map from './components/Map.js'
+import DeliveryForm from "./components/Form.js";
 
 
 class App extends React.PureComponent {
@@ -9,9 +10,9 @@ class App extends React.PureComponent {
     return (
       <div>
        <Map/>
+
+       <DeliveryForm />
       </div>
-      
-      
     )
   }
 }
