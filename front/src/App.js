@@ -2,6 +2,7 @@ import React from "react"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import Map from './components/Map.js'
 import DeliveryForm from "./components/Form.js";
+import Markers from "./components/Markers.js"
 
 
 class App extends React.PureComponent {
@@ -9,15 +10,15 @@ class App extends React.PureComponent {
 
   render() {
 
-    const markersPositions = [
-      { lat: 52.2297, lng: 21.0122 },
-      { lat: 52, lng: 21 },
+    const markersData = [
+      { lat: 52.2297, lng: 21.0122, label: "WAW1337", info: "Paczkomat 1"},
+      { lat: 52.2297, lng: 21.0222, label: "WAW420", info: "Paczkomat 2"}
     ]
 
 
     return (
       <div>
-        <Map markersPositions={markersPositions}/>
+        <Map markersData={markersData}/>
        <DeliveryForm />
       </div>
     )
