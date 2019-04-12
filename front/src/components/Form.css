@@ -1,8 +1,4 @@
-#address {
-    width:20em;
-}
-
-#deliveryParameters {
+fieldset.dataBlock {
     width: 20em;
 }
 
@@ -11,6 +7,5 @@ fieldset.formRow {
 }
 
 fieldset.formRow > input {
-    float: right;
-    width: 50%;
+    margin-left: 1em;
 }
