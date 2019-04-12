@@ -15,7 +15,6 @@ class App extends React.PureComponent {
       { lat: 52.2297, lng: 21.0222, label: "WAW420", info: "Paczkomat 2"}
     ]
 
-
     return (
       <div>
         <Map markersData={markersData}/>

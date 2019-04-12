@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Form.css'
+import DeliveryPointsTable from "./Table";
 
 class DeliveryForm extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class DeliveryForm extends React.Component {
             phoneNumber: '+48 516 942 392' 
         };
 
-        this.deliveryPoint = {
+        this.defaultDeliveryPoint = {
             name: 'WAW22',
             hoursFrom: '08:00',
             hoursTo: '16:00',
@@ -26,7 +27,6 @@ class DeliveryForm extends React.Component {
             hoursTo:  '16:00',
             parkingChecked: 'false'
         };
-
 
         this.handleChange = this.handleChange.bind(this);
     }
@@ -49,13 +49,16 @@ class DeliveryForm extends React.Component {
                 </fieldset>
 
                 <fieldset className="dataBlock" id="defaultDeliveryPoint">
-                    <legend> Punkt odbioru </legend>
-                    <div>  </div>
-   
+                    <legend> Wybrany punkt odbioru </legend>
+                    <div onClick=""> 
+                        <div>{this.defaultDeliveryPoint.name}</div>
+                        <div>{this.defaultDeliveryPoint.hoursFrom} - {this.defaultDeliveryPoint.hoursTo}</div>
+                    </div>
                 </fieldset>
 
                 <fieldset  className="dataBlock" id="deliveryPoints">
                     <legend>Proponowane punkty odbioru</legend>
+                    <DeliveryPointsTable />
                 </fieldset>
 
                 <fieldset  className="dataBlock" id="deliveryPointParameters">
