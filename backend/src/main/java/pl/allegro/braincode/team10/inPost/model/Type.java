@@ -19,26 +19,20 @@ public enum Type {
     private static Map<String, Type> namesMap = new HashMap<>();
 
     static {
-        namesMap.put("parcel_locker", PARCEL_LOCKER);
-        namesMap.put("pop", POP);
-        namesMap.put("parcel_locker_only", PARCEL_LOCKER_ONLY);
-        namesMap.put("parcel_locker_superpop", PARCEL_LOCKER_SUPERPOP);
-        namesMap.put("unknownType", UNKNOWN_TYPE);
+        namesMap.put(PARCEL_LOCKER.description, PARCEL_LOCKER);
+        namesMap.put(POP.description, POP);
+        namesMap.put(PARCEL_LOCKER_ONLY.description, PARCEL_LOCKER_ONLY);
+        namesMap.put(PARCEL_LOCKER_SUPERPOP.description, PARCEL_LOCKER_SUPERPOP);
+        namesMap.put(UNKNOWN_TYPE.description, UNKNOWN_TYPE);
     }
 
     @JsonValue
     public String toValue() {
-        for (Map.Entry<String, Type> entry : namesMap.entrySet()) {
-            if (entry.getValue() == this)
-                return entry.getKey();
-        }
-
-        return null;
+        return this.description;
     }
 
     @JsonCreator
     public static Type fromValue(String value) {
-        System.out.println(value);
         return namesMap.get(value);
     }
 }
