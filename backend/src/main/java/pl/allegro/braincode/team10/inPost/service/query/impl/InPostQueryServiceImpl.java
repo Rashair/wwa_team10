@@ -7,7 +7,6 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import pl.allegro.braincode.team10.dto.DeliveryPoint;
-import pl.allegro.braincode.team10.dto.ListDTO;
 import pl.allegro.braincode.team10.dto.SearchDeliveryPointDTO;
 import pl.allegro.braincode.team10.exception.SearchingInPostDeliveryException;
 import pl.allegro.braincode.team10.inPost.dtoInPost.PointInPost;
@@ -60,7 +59,6 @@ public class InPostQueryServiceImpl implements InPostQueryService {
                 responseEntity = restTemplate.getForEntity(builder.buildAndExpand(new ArrayList<>()).toUri(), PointsList.class);
                 pointInPostListAll.addAll(responseEntity.getBody().getPointsList());
             }
-            ListDTO<DeliveryPoint> listDTO = new ListDTO<>();
             List<DeliveryPoint> deliveryPointList = this.pointInPostMapper.pointInPostListToDeliveryPointBasicList(pointInPostListAll);
             return deliveryPointList;
         } catch (RestClientException e) {
