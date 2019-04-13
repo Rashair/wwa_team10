@@ -6,22 +6,45 @@ import DeliveryForm from "./components/Form.js";
 
 
 class App extends React.PureComponent {
-  
+
+
+  state = {
+    values: []
+  }
+
+  componentDidMount() {
+    const apiUrl = "http://www.mocky.io/v2/5cb124c73300000e0e571ff9";
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(json => {
+        this.setState(json)
+        console.log(this.state)
+      })
+
+  }
+
+  handleAddressForm = function(formData){
+
+    // fetch(apiUrl)
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     this.setState(json)
+    //     console.log(this.state)
+    //   })
+
+    console.log("received formData!")
+    console.log(formData)
+
+  }
 
   render() {
 
-    // const apiUrl = "http://www.mocky.io/v2/5cb124c73300000e0e571ff9";
-
-    const markersData = [
-      { lat: 52.2297, lng: 21.0122, label: "WAW1337", info: "Paczkomat 1" },
-      { lat: 52.2297, lng: 21.0222, label: "WAW420", info: "Paczkomat 2" }
-    ]
-
     return (
       <div className="content-wrapper">
-       <Map markersData={markersData}/>
-        <DeliveryForm />
-       
+        <Map markersData={this.state.values} />
+        <DeliveryForm onSubmit={this.handleAddressForm} />
+
       </div>
     )
   }

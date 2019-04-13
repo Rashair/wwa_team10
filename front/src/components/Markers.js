@@ -24,9 +24,6 @@ class Markers extends Component {
             `woj. ${markerData.address.province}.\n`+
             `Godziny otwarcia: ${markerData.opening_hours}\n`
 
-            // const infoWindowText = "blablabla"
-
-
             console.log("Rendering marker")
             return <Marker
                 position={{ lat: markerData.latitude, lng: markerData.longitude }}
