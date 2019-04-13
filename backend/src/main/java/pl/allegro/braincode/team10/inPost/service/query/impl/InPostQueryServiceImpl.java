@@ -17,10 +17,7 @@ import pl.allegro.braincode.team10.mapper.PointInPostMapper;
 import pl.allegro.braincode.team10.model.DeliveryPointData;
 import pl.allegro.braincode.team10.repository.DeliveryPointDataRepository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -68,6 +65,7 @@ public class InPostQueryServiceImpl implements InPostQueryService {
             }
             List<DeliveryPoint> deliveryPointList = this.pointInPostMapper.pointInPostListToDeliveryPointBasicList(pointInPostListAll);
             fillDataUnavailableInInPostApi(deliveryPointList);
+            filterDataUnavailableInInPostApi(deliveryPointList, searchCriteria);
             return deliveryPointList;
         } catch (RestClientException e) {
             log.error("Error when getting list of InPost Delivery places", e);
@@ -99,6 +97,36 @@ public class InPostQueryServiceImpl implements InPostQueryService {
             }
         }
 
+    }
+
+    private void filterDataUnavailableInInPostApi(List<DeliveryPoint> deliveryPointList, SearchDeliveryPointDTO searchCriteria) {
+        Iterator<DeliveryPoint> deliveryPointIterator = deliveryPointList.iterator();
+        if (searchCriteria.getParking() != null) {
+            while (deliveryPointIterator.hasNext()) {
+                DeliveryPoint deliveryPoint = deliveryPointIterator.next();
+                if (!searchCriteria.getParking().equals(deliveryPoint.isParking())) {
+                    deliveryPointIterator.remove();
+                }
+            }
+        }
+        deliveryPointIterator = deliveryPointList.iterator();
+        if (searchCriteria.getDisabledFriendly() != null) {
+            while (deliveryPointIterator.hasNext()) {
+                DeliveryPoint deliveryPoint = deliveryPointIterator.next();
+                if (!searchCriteria.getDisabledFriendly().equals(deliveryPoint.isDisabledFriendly())) {
+                    deliveryPointIterator.remove();
+                }
+            }
+        }
+        deliveryPointIterator = deliveryPointList.iterator();
+        if (searchCriteria.getWeekendPickup() != null) {
+            while (deliveryPointIterator.hasNext()) {
+                DeliveryPoint deliveryPoint = deliveryPointIterator.next();
+                if (!searchCriteria.getWeekendPickup().equals(deliveryPoint.isWeekendPickup())) {
+                    deliveryPointIterator.remove();
+                }
+            }
+        }
     }
 
     private Map<String, String> parseSearchCriteria(SearchDeliveryPointDTO searchCriteria) {

@@ -11,4 +11,16 @@ public class SearchDeliveryPointDTO {
 
     @JsonProperty("max_distance")
     private Integer maxDistance;
+
+    @JsonProperty("parking")
+    private Boolean parking;
+
+    @JsonProperty("weekend_pickup")
+    private Boolean weekendPickup;
+
+    @JsonProperty("time_to_pickup")
+    private Integer timeToPickup;
+
+    @JsonProperty("disabled_friendly")
+    private Boolean disabledFriendly;
 }
