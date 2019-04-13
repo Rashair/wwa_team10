@@ -32,3 +32,14 @@ fieldset.addressFormRow > label {
 .button-group > button{
     margin-left: 1em;
 }
+
+
+.delivery-point-name {
+    display: inline-block;
+    width: 7em;
+}
+
+.delivery-point-hours {
+    display: inline-block;
+    width: 12em;
+}

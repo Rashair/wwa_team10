@@ -18,8 +18,8 @@ class DeliveryPointsTable extends Component {
 // street: "Krasińskiego"
         this.items = this.props.pointsData.map((item, key) =>
             <tr key={item.name} onClick={() => this.handleDeliveryPointClick(item)}>
-                <td>{item.name}</td>
-                <td>{item.opening_hours}</td>
+                <td className="delivery-point-name">{item.name}</td>
+                <td className="delivery-point-hours">{item.opening_hours}</td>
                 <td>{item.address.street} {item.address.building_number} {item.address.post_code} {item.address.city}</td>
                 <td></td>
             </tr>

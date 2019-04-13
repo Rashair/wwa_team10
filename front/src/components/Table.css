@@ -7,14 +7,6 @@ tr {
     user-select: none;
 }
 
-tr > td:first-of-type {
-    width: 7em;
-}
-
-tr > td:nth-of-type(2) {
-    width: 12em;
-}
-
 tr:hover {
     background-color:lightblue;
 }
