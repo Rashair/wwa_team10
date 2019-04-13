@@ -7,18 +7,12 @@ class DeliveryForm extends Component {
         super(props);
 
         this.state = {
-            deliveryPoint: {
-                name: 'WAW21',
-                hoursFrom: '08:00',
-                hoursTo: '16:00',
-                address: 'Jana Pawła II 10/413 Warszawa'
-            },
-
+            deliveryPoint: {address:{}},
+    
             defaultAddress: {},
-
-
+    
             showAdvancedDeliverySettings: false
-        }
+        };
 
         this.streetInput = React.createRef();
         this.houseNumberInput = React.createRef();
@@ -52,6 +46,13 @@ class DeliveryForm extends Component {
 
             })
     }
+
+    componentWillReceiveProps(nextProps){
+        this.setState( {
+            deliveryPoint: nextProps.pointsData[0],
+        });
+    }
+   
 
     handleChange(event) {
         this.setState({ value: event.target.value });
@@ -134,8 +135,9 @@ class DeliveryForm extends Component {
                     <fieldset className="dataBlock" id="defaultDeliveryPoint">
                         <legend> Wybrany punkt odbioru </legend>
                         <div>
-                            {this.state.deliveryPoint.name} {this.state.deliveryPoint.hoursFrom}-
-                            {this.state.deliveryPoint.hoursTo} {this.state.deliveryPoint.address}
+                            {this.state.deliveryPoint.name} {this.state.deliveryPoint.opening_hours}
+                            {this.state.deliveryPoint.address.street} {this.state.deliveryPoint.address.building_number}
+                            {this.state.deliveryPoint.address.post_code} {this.state.deliveryPoint.address.city}
                         </div>
                     </fieldset>
 
