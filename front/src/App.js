@@ -6,6 +6,10 @@ import DeliveryForm from "./components/Form.js";
 
 
 class App extends React.PureComponent {
+  constructor(props){
+    super(props)
+    this.handleAddressForm=this.handleAddressForm.bind(this);
+  }
 
   
 
