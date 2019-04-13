@@ -35,16 +35,6 @@ class App extends React.PureComponent {
 
   handleAddressForm = function (formData) {
 
-    // fetch(apiUrl)
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     this.setState(json)
-    //     console.log(this.state)
-    //   })
-
-
-    //const apiUrl = "http://www.mocky.io/v2/5cb15b093300004a1257204d";
-
     console.log(JSON.stringify(formData))
     const apiUrl = "http://localhost:8080/delivery"
     fetch(apiUrl, {

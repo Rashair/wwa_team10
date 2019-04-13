@@ -28,18 +28,10 @@ class DeliveryForm extends Component {
         this.rangeInput = React.createRef();
 
         this.handleAddressButtonClicked = this.handleAddressButtonClicked.bind(this)
-        this.address = {
-            street: 'Jana Pawła II',
-            buildingNumber: '22',
-            flatNumber: '413',
-            postalCode: '00-133',
-            city: 'Warszawa'
-        };
+        this.address = {};
 
         this.deliveryPointParameters = {
             range: '1000',
-            hoursFrom: '08:00',
-            hoursTo: '16:00',
             parkingChecked: 'false'
         };
 
