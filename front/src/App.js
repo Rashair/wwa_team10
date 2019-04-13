@@ -18,8 +18,9 @@ class App extends React.PureComponent {
 
     return (
       <div className="content-wrapper">
+       <Map markersData={markersData}/>
         <DeliveryForm />
-        <Map markersData={markersData}/>
+       
       </div>
     )
   }

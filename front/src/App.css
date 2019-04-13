@@ -34,6 +34,7 @@
 
 .content-wrapper {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 48% 48%;
+  grid-column-gap: 1%;
   grid-auto-rows: auto;
 }
