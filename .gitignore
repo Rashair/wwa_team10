@@ -23,3 +23,6 @@ front/.pnp.js
 ./yarn-error.log*
 
 .vscode
+
+./backend/.idea/
+./backend/target/
