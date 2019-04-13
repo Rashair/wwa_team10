@@ -26,6 +26,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+            <version>${spring.boot.version}</version>
 		</dependency>
 
 		<dependency>
@@ -44,13 +45,8 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring.boot.version}</version>
         </dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>${spring.boot.version}</version>
-		</dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -61,18 +57,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${spring.boot.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 
 	</dependencies>
 
@@ -87,6 +78,13 @@
 						<artifactId>maven-compiler-plugin</artifactId>
 						<version>3.5.1</version>
 						<configuration>
+                            <archive>
+                                <manifest>
+                                    <addClasspath>true</addClasspath>
+                                    <classpathPrefix>lib/</classpathPrefix>
+                                    <mainClass>pl.allegro.braincode.team10.Team10Application</mainClass>
+                                </manifest>
+                            </archive>
 							<source>1.8</source>
 							<target>1.8</target>
 							<annotationProcessorPaths>
@@ -103,6 +101,6 @@
 							</annotationProcessorPaths>
 						</configuration>
 					</plugin>
-				</plugins>
+		</plugins>
 	</build>
 </project>
