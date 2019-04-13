@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class PointIn {
+public class ClientAddressDTO {
     @JsonProperty("clientAddresses")
     private List<Address> clientAddresses;
 }

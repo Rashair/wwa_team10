@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.allegro.braincode.team10.allegro.dto.Address;
-import pl.allegro.braincode.team10.allegro.dto.PointIn;
+import pl.allegro.braincode.team10.allegro.dto.ClientAddressDTO;
 import pl.allegro.braincode.team10.service.query.ClientQueryService;
 
 import java.util.ArrayList;
@@ -18,13 +18,14 @@ public class ClientController {
     public ClientController(ClientQueryService clientQueryService) {
 
         this.clientQueryService = clientQueryService;
+
     }
 
     private ClientQueryService clientQueryService;
 
     @GetMapping(value = "/{id}/address")
     @ResponseBody
-    public ResponseEntity<ArrayList<Address>> apiGet(@PathVariable("id") String clientID) {
+    public ResponseEntity<ArrayList<Address>> getClientAddresses(@PathVariable("id") String clientID) {
 
         ArrayList<Address> clientAddresses =  clientQueryService.getClientAddress(clientID);
 
@@ -33,7 +34,7 @@ public class ClientController {
 
     @PutMapping(value = "/{id}/address")
     @ResponseBody
-    public ResponseEntity<?> apiPut(@PathVariable("id") String clientID, @RequestBody() PointIn clientAddresses) {
+    public ResponseEntity<?> putClientAddresses(@PathVariable("id") String clientID, @RequestBody() ClientAddressDTO clientAddresses) {
 
         clientQueryService.addClient(clientID, clientAddresses.getClientAddresses());
 
