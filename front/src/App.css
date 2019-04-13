@@ -38,8 +38,8 @@
   grid-column-gap: 1%;
   grid-auto-rows: auto;
 }
-
-fieldset > button {
+ 
+.primary-button {
   width: 50%;
   display: block;
   margin:auto;

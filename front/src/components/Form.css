@@ -22,3 +22,13 @@ fieldset.addressFormRow > label {
 #defaultDeliveryPoint{
     user-select: none;
 }
+
+.button-group{
+    display:block;
+    margin:auto;
+    text-align: center;
+}
+
+.button-group > button{
+    margin-left: 1em;
+}

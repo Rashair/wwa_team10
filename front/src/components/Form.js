@@ -47,6 +47,10 @@ class DeliveryForm extends Component {
         this.setState({ value: event.target.value });
     }
 
+    handleAdvancedSearching = () => {
+        this.setState({showAdvancedDeliverySettings:!this.state.showAdvancedDeliverySettings})
+    }
+
     handleAddressButtonClicked() {
         this.props.onSubmit(
             {
@@ -95,7 +99,10 @@ class DeliveryForm extends Component {
 
                             <input id="city" type="text" defaultValue={this.address.city} ref={this.cityInput} />
                         </fieldset>
-                        <button type="button" onClick={this.handleAddressButtonClicked} >Wyszukaj</button>
+                        <div class="button-group">
+                            <button type="button" onClick={this.handleAddressButtonClicked}>Wyszukaj</button>
+                            <button type="button" onClick={this.handleAdvancedSearching}>Wyszukiwanie zaawansowane</button>
+                        </div>
                     </fieldset>
 
                     <fieldset className="dataBlock" id="defaultDeliveryPoint">
