@@ -77,7 +77,7 @@ class DeliveryForm extends Component {
                         </fieldset>
                         <fieldset className="addressFormRow">
                             <label htmlFor="flatNumber">Numer mieszkania</label>
-                            <input id="flatNumber" type="text" defaultValue={this.address.flatNumber} />
+                            <input id="flatNumber" type="text" defaultValue={this.address.flatNumber} ref={this.flatNumberInput}/>
                         </fieldset>
                         <fieldset className="addressFormRow">
                             <label htmlFor="postalCode">Kod pocztowy</label>

@@ -7,6 +7,7 @@ import DeliveryForm from "./components/Form.js";
 
 class App extends React.PureComponent {
 
+  
 
   state = {
     values: []
@@ -24,7 +25,7 @@ class App extends React.PureComponent {
 
   }
 
-  handleAddressForm = function(formData){
+  handleAddressForm = function (formData) {
 
     // fetch(apiUrl)
     //   .then(response => response.json())
@@ -33,8 +34,20 @@ class App extends React.PureComponent {
     //     console.log(this.state)
     //   })
 
-    console.log("received formData!")
-    console.log(formData)
+
+    const apiUrl = "http://www.mocky.io/v2/5cb15b093300004a1257204d";
+
+    fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData)
+    }).then(response => response.json())
+      .then(json => {
+        this.setState(json)
+        console.log(this.state)
+      })
 
   }
 
