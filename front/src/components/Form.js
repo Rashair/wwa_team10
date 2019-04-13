@@ -86,7 +86,8 @@ class DeliveryForm extends Component {
     }
 
     handleDeliveryPointClicked = (pointData) => {
-        this.setState({ deliveryPoint: pointData })
+        this.setState({ deliveryPoint: pointData });
+        this.props.changeCenter({lat:pointData.latitude, lng:pointData.longitude})
     }
 
     render() {

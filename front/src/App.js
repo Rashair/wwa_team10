@@ -9,13 +9,9 @@ class App extends React.PureComponent {
     super(props)
     this.handleAddressForm=this.handleAddressForm.bind(this);
     this.map = React.createRef();
-
-   
   }
 
   state = {
-    source_latitude : {},
-    source_longtitude : {},
     values: [],
     mapZoom: 5,
     source_latitude: 52.2297,
@@ -23,8 +19,7 @@ class App extends React.PureComponent {
   };
 
   handleAddressForm = function (formData) {
-
-    
+    console.log(formData);
     const apiUrl = "http://localhost:8080/delivery"
     fetch(apiUrl, {
       method: "POST",
@@ -35,11 +30,20 @@ class App extends React.PureComponent {
     }).then(response => response.json())
       .then(json => {
         this.setState(json); //console.log(json);
-        console.log("json:")
-        console.log(json)
-        this.map.current.pan({ lat: json.source_latitude, lng: json.source_longitude })
+        console.log("json:");
+        console.log(json);
+        let myLat = json.values.length > 0 ? json.values[0].latitude  : json.source_latitude;
+        let myLng = json.values.length > 0 ? json.values[0].longitude  : json.source_longitude;
+
+          console.log("abracacadbara");
+          console.log(myLat + " " + myLng); 
+          this.map.current.pan({ lat: myLat, lng: myLng })
+        
       })
-    
+  }
+
+  changeCenterMap = (location) => {
+    this.map.current.pan({lat:location.lat, lng:location.lng});
   }
 
   render() {
@@ -47,7 +51,7 @@ class App extends React.PureComponent {
     return (
       <div className="content-wrapper">
         <Map ref={this.map} markersData={this.state.values} centerLng={this.state.source_longitude} centerLtd={this.state.source_latitude}/>
-        <DeliveryForm onSubmit={this.handleAddressForm} pointsData={this.state.values} />
+        <DeliveryForm onSubmit={this.handleAddressForm} pointsData={this.state.values} changeCenter={this.changeCenterMap} />
       </div>
     )
   }

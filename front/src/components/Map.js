@@ -28,8 +28,6 @@ class Map extends Component {
 
     constructor(props) {
         super(props);
-        console.log("props:")
-        console.log(props)
         this.googleMap = React.createRef();
         
 
@@ -40,19 +38,16 @@ class Map extends Component {
                 defaultZoom={16}
                 ref={this.googleMap}
                // ref={(map) => map && map.panTo({lat: props.centerLat, lng: props.centerLng})}
-            //    ref={(map) => map && map.panTo({ lat: 52.2297, lng: 21.0122 })}
+               // ref={(map) => map && map.panTo({ lat: 52.2297, lng: 21.0122 })}
     
             >
                 {props.children}
             </GoogleMap>
         ));
-    
 
     pan(location){
-        console.log("check pan")
         if(this.googleMap.current != null){
-            console.log("paneedddd")
-        this.googleMap.current.panTo(location)
+            this.googleMap.current.panTo(location)
         }
     }
 
