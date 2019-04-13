@@ -37,9 +37,15 @@ fieldset.addressFormRow > label {
 .delivery-point-name {
     display: inline-block;
     width: 7em;
+    font-size: 90%;
 }
 
 .delivery-point-hours {
     display: inline-block;
-    width: 12em;
+    width: 8em;
+    font-size: 90%;
+}
+
+#defaultDeliveryPoint > div > span {
+    font-size:90%
 }

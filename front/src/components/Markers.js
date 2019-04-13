@@ -21,8 +21,12 @@ class Markers extends Component {
             `${markerData.address.building_number},\n`+
             `${markerData.address.post_code}\n`+
             `${markerData.address.city},\n`+
-            `woj. ${markerData.address.province}.\n`+
-            `Godziny otwarcia: ${markerData.opening_hours || ""}\n`
+            `woj. ${markerData.address.province}.\n`+ 
+             (markerData.opening_hours !== null ? `Godziny otwarcia: ${markerData.opening_hours}\n` : ``) + ` -- `
+             + (markerData.parking === false ? `Brak parkingu`: `Dostępny parking`) + ` -- `
+             + (markerData.disabled_friendly === false ? `Łatwy dostęp dla niepełnosprawnych`: `Utrudniony dostęp dla niepełnosprawnych`) + 
+             ` -- ` + (markerData.weekend_pickup === false ? `Dostęp w weekendy` : `Brak dostępu w weekendy`) + ` -- ` +
+            `Czas na odbiór przesyłki: ` + markerData.time_to_pickup + ` dni.` ;
 
             console.log("Rendering marker")
             return <Marker

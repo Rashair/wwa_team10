@@ -5,6 +5,7 @@
 tr {
     cursor: pointer;
     user-select: none;
+    font-size: 90%;
 }
 
 tr:hover {
@@ -13,7 +14,8 @@ tr:hover {
 
 /* .occupancy-bar{
     background-color: black;
-    width: 10em;
+    width: 7em;
+    padding-right: 1em;
 }
 
 .occupancy-bar > div{

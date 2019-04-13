@@ -150,7 +150,7 @@ class DeliveryForm extends Component {
                             <span className="delivery-point-name">{this.state.deliveryPoint.name} </span>
                             <span className="delivery-point-hours"> {this.state.deliveryPoint.opening_hours} </span>
                             <span>
-                                {this.state.deliveryPoint.address.street} {this.state.deliveryPoint.address.building_number}
+                                {this.state.deliveryPoint.address.street} {this.state.deliveryPoint.address.building_number} {", "} 
                                 {this.state.deliveryPoint.address.post_code} {this.state.deliveryPoint.address.city}
                             </span>
                         </div>
@@ -160,7 +160,6 @@ class DeliveryForm extends Component {
                         <legend>Proponowane punkty odbioru</legend>
                         <DeliveryPointsTable pointsData={this.props.pointsData.slice(0, 5)} onPointClick={this.handleDeliveryPointClicked} />
                     </fieldset>
-                    <button type="button" > Podsumowanie </button>
                 </form>
             </div>
         );
