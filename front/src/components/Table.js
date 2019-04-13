@@ -9,13 +9,6 @@ class DeliveryPointsTable extends Component {
     };
 
     render() {
-//ddress:
-// building_number: "27"
-// city: "Warszawa"
-// flat_number: null
-// post_code: "01-580"
-// province: "mazowieckie"
-// street: "Krasińskiego"
         this.items = this.props.pointsData.map((item, key) =>
             <tr key={item.name} onClick={() => this.handleDeliveryPointClick(item)}>
                 <td className="delivery-point-name">{item.name}</td>

@@ -48,9 +48,16 @@ class DeliveryForm extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        this.setState( {
-            deliveryPoint: nextProps.pointsData[0],
-        });
+        if(nextProps.pointsData != null && nextProps.pointsData.length > 0){
+            this.setState( {
+                deliveryPoint: nextProps.pointsData[0],
+            });
+        }
+        else{
+            this.setState( {
+                deliveryPoint: {address:{}}
+            });
+        }
     }
    
 
