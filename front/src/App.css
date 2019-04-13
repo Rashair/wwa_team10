@@ -31,3 +31,9 @@
     transform: rotate(360deg);
   }
 }
+
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-auto-rows: auto;
+}

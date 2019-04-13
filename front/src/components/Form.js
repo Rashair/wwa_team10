@@ -38,6 +38,7 @@ class DeliveryForm extends React.Component {
 
     render() {
         return (
+            <div>
             <form>
                 <fieldset  className="dataBlock" id="address">
                     <legend> Adres </legend>
@@ -104,6 +105,7 @@ class DeliveryForm extends React.Component {
 
                 <button type="submit" value="Submit" > Podsumowanie </button>
             </form>
+            </div>
         );
     }
 }
