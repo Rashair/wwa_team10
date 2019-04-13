@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import pl.allegro.braincode.team10.dto.DeliveryPointBasic;
+import pl.allegro.braincode.team10.dto.DeliveryPoint;
 import pl.allegro.braincode.team10.dto.ListDTO;
 import pl.allegro.braincode.team10.dto.SearchDeliveryPointDTO;
 import pl.allegro.braincode.team10.exception.SearchingInPostDeliveryException;
@@ -36,7 +36,7 @@ public class InPostQueryServiceImpl implements InPostQueryService {
     }
 
     @Override
-    public ListDTO<DeliveryPointBasic> getDeliveryPoints(
+    public List<DeliveryPoint> getDeliveryPoints(
             SearchDeliveryPointDTO searchCriteria,
             Location location) {
         validateLocation(location);
@@ -60,10 +60,9 @@ public class InPostQueryServiceImpl implements InPostQueryService {
                 responseEntity = restTemplate.getForEntity(builder.buildAndExpand(new ArrayList<>()).toUri(), PointsList.class);
                 pointInPostListAll.addAll(responseEntity.getBody().getPointsList());
             }
-            ListDTO<DeliveryPointBasic> listDTO = new ListDTO<>();
-            List<DeliveryPointBasic> deliveryPointBasicList = this.pointInPostMapper.pointInPostListToDeliveryPointBasicList(pointInPostListAll);
-            listDTO.setValues(deliveryPointBasicList);
-            return listDTO;
+            ListDTO<DeliveryPoint> listDTO = new ListDTO<>();
+            List<DeliveryPoint> deliveryPointList = this.pointInPostMapper.pointInPostListToDeliveryPointBasicList(pointInPostListAll);
+            return deliveryPointList;
         } catch (RestClientException e) {
             log.error("Error when getting list of InPost Delivery places", e);
             throw new SearchingInPostDeliveryException();

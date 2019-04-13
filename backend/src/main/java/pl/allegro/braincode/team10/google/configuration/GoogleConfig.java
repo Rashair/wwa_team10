@@ -17,4 +17,10 @@ public class GoogleConfig {
     private String addressParam;
 
     private String endpointGeocode;
+
+    private String origins;
+
+    private String destinations;
+
+    private String endpointDistance;
 }

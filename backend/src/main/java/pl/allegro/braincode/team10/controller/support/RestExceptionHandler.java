@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import pl.allegro.braincode.team10.exception.GoogleDistancesCalculationException;
 import pl.allegro.braincode.team10.exception.SearchingGoogleCoordinatesException;
 import pl.allegro.braincode.team10.exception.SearchingInPostDeliveryException;
 
@@ -25,5 +26,10 @@ public class RestExceptionHandler {
     @ExceptionHandler(value = SearchingGoogleCoordinatesException.class)
     public ResponseEntity<Object> handleSearchingGoogleCoordinatesException(SearchingGoogleCoordinatesException ex) {
         return new ResponseEntity<>("Could not perform search query of coordinates from address", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(value = GoogleDistancesCalculationException.class)
+    public ResponseEntity<Object> handleGoogleDistancesCalculationException(GoogleDistancesCalculationException ex) {
+        return new ResponseEntity<>("Could not perform search query of distances from address", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

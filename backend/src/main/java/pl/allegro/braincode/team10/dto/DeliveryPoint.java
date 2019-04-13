@@ -6,7 +6,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class DeliveryPointBasic {
+public class DeliveryPoint {
 
     @JsonProperty("name")
     private String name;
@@ -22,4 +22,10 @@ public class DeliveryPointBasic {
 
     @JsonProperty("opening_hours")
     private String openingHours;
+
+    @JsonProperty("distance_text")
+    private String distanceTextKm;
+
+    @JsonProperty("distance_value")
+    private Integer distanceValue;
 }
