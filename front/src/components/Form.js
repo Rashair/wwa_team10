@@ -128,17 +128,6 @@ class DeliveryForm extends Component {
                             <input id="range" type="number" defaultValue={this.deliveryPointParameters.range} ref={this.rangeInput}/>
                         </fieldset>
                         <fieldset className="formRow">
-                            <legend>Godziny otwarcia</legend>
-                            <fieldset className="formRow">
-                                <label htmlFor="hoursFrom"> Od: </label>
-                                <input id="hoursFrom" type="time" defaultValue={this.deliveryPointParameters.hoursFrom} />
-                            </fieldset>
-                            <fieldset className="formRow">
-                                <label htmlFor="hoursTo"> Do: </label>
-                                <input id="hoursTo" type="time" defaultValue={this.deliveryPointParameters.hoursTo} />
-                            </fieldset>
-                        </fieldset>
-                        <fieldset className="formRow">
                             <label htmlFor="parking"> Parking </label>
                             <input id="parking" type="checkbox" defaultChecked={this.deliveryPointParameters.parkingChecked} />
                         </fieldset>
