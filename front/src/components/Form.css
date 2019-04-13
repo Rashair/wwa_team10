@@ -7,5 +7,15 @@ fieldset.formRow {
 }
 
 fieldset.formRow > input {
-    margin-left: 1em;
+    margin-left:1em;
+}
+
+fieldset.addressFormRow {
+    border:none;
+}
+
+fieldset.addressFormRow > label {
+    display: inline-block;
+    width: 10em;
+    text-align: left;
 }
