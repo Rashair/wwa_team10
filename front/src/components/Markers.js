@@ -14,19 +14,31 @@ class Markers extends Component {
     render() {
 
         const markers = this.props.markersData.map(markerData => {
-            const key = `${markerData.lat}/${markerData.lng}`
+            const key = `${markerData.latitude}/${markerData.longitude}`
+
+            const infoWindowText = 
+            `ul. ${markerData.address.street}\n`+
+            `${markerData.address.building_number},\n`+
+            `${markerData.address.post_code}\n`+
+            `${markerData.address.city},\n`+
+            `woj. ${markerData.address.province}.\n`+
+            `Godziny otwarcia: ${markerData.opening_hours}\n`
+
+            // const infoWindowText = "blablabla"
+
+
             console.log("Rendering marker")
             return <Marker
-                position={{ lat: markerData.lat, lng: markerData.lng }}
+                position={{ lat: markerData.latitude, lng: markerData.longitude }}
                 key={key}
-                label={markerData.label}
+                label={markerData.name}
                 onClick={() => (this.showInfo(key))}
             >
 
                 {(this.state.showInfoForKey === key) &&
                     <InfoWindow>
                         <div>
-                            <div>{markerData.info}</div>
+                            <div>{infoWindowText}</div>
                         </div>
                     </InfoWindow>}
 

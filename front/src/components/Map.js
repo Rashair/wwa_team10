@@ -6,6 +6,10 @@ import Markers from './Markers.js'
 
 class Map extends Component {
 
+    state = {
+        values: []
+    }
+
     constructor(props) {
         super(props);
         console.log(props)
@@ -17,16 +21,28 @@ class Map extends Component {
         })).isRequired
     }
 
+    componentDidMount() {
+        const apiUrl = "http://www.mocky.io/v2/5cb124c73300000e0e571ff9";
+
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(json => {
+                this.setState(json)
+                console.log(this.state)
+            })
+
+    }
+
+
     render() {
 
-        console.log(this.props.markersData)
-        
         const GoogleMapRendered = withGoogleMap(props => (
             <GoogleMap
                 defaultCenter={{ lat: 52.2297, lng: 21.0122 }}
-                defaultZoom={13}
+                defaultZoom={6}
             >
-                <Markers markersData={this.props.markersData} />
+                <Markers markersData={this.state.values} />
             </GoogleMap>
         ));
 
