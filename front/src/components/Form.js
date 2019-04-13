@@ -20,6 +20,7 @@ class DeliveryForm extends Component {
         this.postalCodeInput = React.createRef();
         this.cityInput = React.createRef();
         this.rangeInput = React.createRef();
+        this.parkingCheckbox = React.createRef();
 
         this.handleAddressButtonClicked = this.handleAddressButtonClicked.bind(this)
         this.address = {};
@@ -70,6 +71,7 @@ class DeliveryForm extends Component {
     }
 
     handleAddressButtonClicked() {
+        console.log(this.parkingCheckbox.current)
         this.props.onSubmit(
             {
                 address:
@@ -78,7 +80,8 @@ class DeliveryForm extends Component {
                     building_number: this.houseNumberInput.current.value,
                     flat_number: this.flatNumberInput.current.value,
                     post_code: this.postalCodeInput.current.value,
-                    street: this.streetInput.current.value
+                    street: this.streetInput.current.value,
+                    parking: this.parkingCheckbox.current == null ? false : this.parkingCheckbox.current.checked
                 },
                 max_distance: this.rangeInput.current === null ? 1000 : this.rangeInput.current.value
             }
@@ -118,7 +121,8 @@ class DeliveryForm extends Component {
                             <input id="city" type="text" defaultValue={this.state.defaultAddress.city} ref={this.cityInput} />
                         </fieldset>
 
-                        {(this.state.showAdvancedDeliverySettings) &&
+                        {
+                            (this.state.showAdvancedDeliverySettings) &&
                             <div>
                                 <p>Opcje zaawansowane</p>
                                 <fieldset className="addressFormRow">
@@ -128,7 +132,7 @@ class DeliveryForm extends Component {
                                 </fieldset>
                                 <fieldset className="addressFormRow">
                                     <label htmlFor="parking"> Parking </label>
-                                    <input id="parking" type="checkbox" defaultChecked={this.deliveryPointParameters.parkingChecked} />
+                                    <input id="parking" type="checkbox" defaultChecked={this.deliveryPointParameters.parkingChecked} ref={this.parkingCheckbox} />
                                 </fieldset>
                             </div>
                         }

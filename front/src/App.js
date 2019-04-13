@@ -21,6 +21,7 @@ class App extends React.PureComponent {
   handleAddressForm = function (formData) {
     console.log(formData);
     const apiUrl = "http://localhost:8080/delivery"
+    console.log(formData)
     fetch(apiUrl, {
       method: "POST",
       headers: {
