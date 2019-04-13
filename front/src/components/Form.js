@@ -38,21 +38,20 @@ class DeliveryForm extends Component {
         this.handleChange = this.handleChange.bind(this);
 
         console.log("mounting..")
-        const apiUrl = "http://localhost:8080/client/1/address"
+        const apiUrl = "http://localhost:8080/client/2/address"
         fetch(apiUrl, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             },
         }).then(response => response.json())
-            .then(json => {
+         .then(json => {
                 this.setState({ defaultAddress: json }, () => {
                     this.handleAddressButtonClicked();
                 })
 
             })
     }
-
 
     handleChange(event) {
         this.setState({ value: event.target.value });
@@ -83,8 +82,6 @@ class DeliveryForm extends Component {
     }
 
     render() {
-        console.log("rendering...")
-
         return (
             <div>
                 <form>

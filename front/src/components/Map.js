@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
-import PropTypes from 'prop-types'
+import { withGoogleMap, GoogleMap} from 'react-google-maps';
 import Markers from './Markers.js'
 
 const GoogleMapRendered = withGoogleMap(props => (
