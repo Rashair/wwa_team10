@@ -48,9 +48,16 @@ class DeliveryForm extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        this.setState( {
-            deliveryPoint: nextProps.pointsData[0],
-        });
+        if(nextProps.pointsData != null && nextProps.pointsData.length > 0){
+            this.setState( {
+                deliveryPoint: nextProps.pointsData[0],
+            });
+        }
+        else{
+            this.setState( {
+                deliveryPoint: {address:{}}
+            });
+        }
     }
    
 
@@ -135,15 +142,18 @@ class DeliveryForm extends Component {
                     <fieldset className="dataBlock" id="defaultDeliveryPoint">
                         <legend> Wybrany punkt odbioru </legend>
                         <div>
-                            {this.state.deliveryPoint.name} {this.state.deliveryPoint.opening_hours}
-                            {this.state.deliveryPoint.address.street} {this.state.deliveryPoint.address.building_number}
-                            {this.state.deliveryPoint.address.post_code} {this.state.deliveryPoint.address.city}
+                            <span className="delivery-point-name">{this.state.deliveryPoint.name} </span>
+                            <span className="delivery-point-hours"> {this.state.deliveryPoint.opening_hours} </span>
+                            <span>
+                                {this.state.deliveryPoint.address.street} {this.state.deliveryPoint.address.building_number}
+                                {this.state.deliveryPoint.address.post_code} {this.state.deliveryPoint.address.city}
+                            </span>
                         </div>
                     </fieldset>
 
                     <fieldset className="dataBlock" id="deliveryPoints">
                         <legend>Proponowane punkty odbioru</legend>
-                        <DeliveryPointsTable pointsData={this.props.pointsData} onPointClick={this.handleDeliveryPointClicked} />
+                        <DeliveryPointsTable pointsData={this.props.pointsData.slice(0, 5)} onPointClick={this.handleDeliveryPointClicked} />
                     </fieldset>
                     <button type="button" > Podsumowanie </button>
                 </form>

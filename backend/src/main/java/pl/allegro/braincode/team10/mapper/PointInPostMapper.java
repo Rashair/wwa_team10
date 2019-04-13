@@ -15,6 +15,13 @@ public interface PointInPostMapper {
     @Mapping(source = "location.longitude", target = "longitude")
     @Mapping(source = "address", target = "address")
     @Mapping(source = "openingHours", target = "openingHours")
+    @Mapping(target = "distanceTextKm", ignore = true)
+    @Mapping(target = "distanceValue", ignore = true)
+    @Mapping(target = "occupancy", ignore = true)
+    @Mapping(target = "parking", ignore = true)
+    @Mapping(target = "weekendPickup", ignore = true)
+    @Mapping(target = "timeToPickup", ignore = true)
+    @Mapping(target = "disabledFriendly", ignore = true)
     DeliveryPoint pointInPostToDeliveryPointBasic(PointInPost pointInPost);
 
     List<DeliveryPoint> pointInPostListToDeliveryPointBasicList(List<PointInPost> pointInPostList);
