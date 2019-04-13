@@ -13,7 +13,6 @@ class DeliveryPointsTable extends Component {
             <tr key={item.name} onClick={() => this.handleDeliveryPointClick(item)}>
                 <td className="delivery-point-name">{item.name}</td>
                 <td className="delivery-point-hours">{item.opening_hours}</td>
-                {/* //<td className="occupancy-bar"> <div></div> </td> */}
                 <td>{item.address.street} {item.address.building_number} {", "} {item.address.post_code} {item.address.city}</td>
                 <td></td>
             </tr>

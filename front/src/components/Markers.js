@@ -23,6 +23,7 @@ class Markers extends Component {
             `${markerData.address.city},\n`+
             `woj. ${markerData.address.province}.\n`+ 
              (markerData.opening_hours !== null ? `Godziny otwarcia: ${markerData.opening_hours}\n` : ``) + ` -- `
+             + (`Wypełnienie paczkomatu: ` + markerData.occupancy) + `% -- `
              + (markerData.parking === false ? `Brak parkingu`: `Dostępny parking`) + ` -- `
              + (markerData.disabled_friendly === false ? `Łatwy dostęp dla niepełnosprawnych`: `Utrudniony dostęp dla niepełnosprawnych`) + 
              ` -- ` + (markerData.weekend_pickup === false ? `Dostęp w weekendy` : `Brak dostępu w weekendy`) + ` -- ` +

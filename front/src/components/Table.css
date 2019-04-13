@@ -11,13 +11,3 @@ tr {
 tr:hover {
     background-color:lightblue;
 }
-
-/* .occupancy-bar{
-    background-color: black;
-    width: 7em;
-    padding-right: 1em;
-}
-
-.occupancy-bar > div{
-    background-color: orange;
-} */
