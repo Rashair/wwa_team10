@@ -22,13 +22,12 @@ class Markers extends Component {
             `${markerData.address.post_code}\n`+
             `${markerData.address.city},\n`+
             `woj. ${markerData.address.province}.\n`+
-            `Godziny otwarcia: ${markerData.opening_hours}\n`
+            `Godziny otwarcia: ${markerData.opening_hours || ""}\n`
 
             console.log("Rendering marker")
             return <Marker
                 position={{ lat: markerData.latitude, lng: markerData.longitude }}
                 key={key}
-                label={markerData.name}
                 onClick={() => (this.showInfo(key))}
             >
 

@@ -14,6 +14,8 @@ class App extends React.PureComponent {
   }
 
   state = {
+    source_latitude : {},
+    source_longtitude : {},
     values: [],
     mapZoom: 5,
     source_latitude: 52.2297,
