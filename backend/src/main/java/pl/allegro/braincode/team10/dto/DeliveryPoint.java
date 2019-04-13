@@ -28,4 +28,19 @@ public class DeliveryPoint {
 
     @JsonProperty("distance_value")
     private Integer distanceValue;
+
+    @JsonProperty("occupancy")
+    private Integer occupancy;
+
+    @JsonProperty("parking")
+    private boolean parking;
+
+    @JsonProperty("weekend_pickup")
+    private boolean weekendPickup;
+
+    @JsonProperty("time_to_pickup")
+    private Integer timeToPickup;
+
+    @JsonProperty("disabled_friendly")
+    private boolean disabledFriendly;
 }
