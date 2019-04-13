@@ -26,5 +26,4 @@ front/.pnp.js
 
 backend/.idea/
 backend/target/
-backend/src/main/resources/google.properties
 

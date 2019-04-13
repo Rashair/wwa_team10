@@ -15,7 +15,7 @@ class DeliveryForm extends Component {
             },
 
             defaultAddress: {},
-            
+
 
             showAdvancedDeliverySettings: false
         }
@@ -28,46 +28,37 @@ class DeliveryForm extends Component {
         this.rangeInput = React.createRef();
 
         this.handleAddressButtonClicked = this.handleAddressButtonClicked.bind(this)
-        this.address = {
-            street: 'Jana Pawła II',
-            buildingNumber: '22',
-            flatNumber: '413',
-            postalCode: '00-133',
-            city: 'Warszawa'
-        };
+        this.address = {};
 
         this.deliveryPointParameters = {
             range: '1000',
-            hoursFrom: '08:00',
-            hoursTo: '16:00',
             parkingChecked: 'false'
         };
 
         this.handleChange = this.handleChange.bind(this);
-    }
 
-    componentDidMount() {
         console.log("mounting..")
-        const apiUrl = "http://localhost:8080/client/1/address"
+        const apiUrl = "http://localhost:8080/client/2/address"
         fetch(apiUrl, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
         }).then(response => response.json())
-          .then(json => {
-            this.setState({defaultAddress: json})
-            console.log(this.state)
-          })
-    
-      }
+         .then(json => {
+                this.setState({ defaultAddress: json }, () => {
+                    this.handleAddressButtonClicked();
+                })
+
+            })
+    }
 
     handleChange(event) {
         this.setState({ value: event.target.value });
     }
 
     handleAdvancedSearching = () => {
-        this.setState({showAdvancedDeliverySettings:!this.state.showAdvancedDeliverySettings})
+        this.setState({ showAdvancedDeliverySettings: !this.state.showAdvancedDeliverySettings })
     }
 
     handleAddressButtonClicked() {
@@ -80,7 +71,7 @@ class DeliveryForm extends Component {
                     flat_number: this.flatNumberInput.current.value,
                     post_code: this.postalCodeInput.current.value,
                     street: this.streetInput.current.value
-                }, 
+                },
                 max_distance: this.rangeInput.current === null ? 1000 : this.rangeInput.current.value
             }
         )
@@ -91,8 +82,6 @@ class DeliveryForm extends Component {
     }
 
     render() {
-        console.log("rendering...")
-
         return (
             <div>
                 <form>

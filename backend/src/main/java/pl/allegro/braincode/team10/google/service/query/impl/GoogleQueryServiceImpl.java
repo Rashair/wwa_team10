@@ -7,11 +7,11 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import pl.allegro.braincode.team10.dto.Address;
+import pl.allegro.braincode.team10.dto.DeliveryPoint;
+import pl.allegro.braincode.team10.exception.GoogleDistancesCalculationException;
 import pl.allegro.braincode.team10.exception.SearchingGoogleCoordinatesException;
 import pl.allegro.braincode.team10.google.configuration.GoogleConfig;
-import pl.allegro.braincode.team10.google.dtoGoogle.AddressData;
-import pl.allegro.braincode.team10.google.dtoGoogle.Coordinates;
-import pl.allegro.braincode.team10.google.dtoGoogle.CoordinatesAnswer;
+import pl.allegro.braincode.team10.google.dtoGoogle.*;
 import pl.allegro.braincode.team10.google.service.query.GoogleQueryService;
 
 import java.util.ArrayList;
@@ -48,6 +48,45 @@ public class GoogleQueryServiceImpl implements GoogleQueryService {
         } catch (RestClientException ex) {
             log.error("Error when getting coordinates from address", ex);
             throw new SearchingGoogleCoordinatesException();
+        }
+    }
+
+    @Override
+    public void fillDistanceToPoint(List<DeliveryPoint> deliveryPoints, Coordinates coordinates) {
+        if (!deliveryPoints.isEmpty()) {
+            StringBuilder strBld = new StringBuilder();
+            for (DeliveryPoint deliveryPoint : deliveryPoints) {
+                strBld.append(deliveryPoint.getLatitude());
+                strBld.append(",");
+                strBld.append(deliveryPoint.getLongitude());
+                strBld.append("|");
+            }
+            strBld.deleteCharAt(strBld.length() - 1);
+            try {
+                RestTemplate restTemplate = new RestTemplate();
+                UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(config.getEndpointDistance())
+                        .queryParam(config.getOrigins(), coordinates.getLatitude() + "," + coordinates.getLongitude())
+                        .queryParam(config.getDestinations(), strBld.toString())
+                        .queryParam(config.getTokenKey(), config.getTokenValue());
+                ResponseEntity<DistanceRowsList> responseEntity = restTemplate.getForEntity(
+                        builder.buildAndExpand(new ArrayList<>()).toUri(), DistanceRowsList.class);
+                List<DistanceElement> distanceElementsList = responseEntity
+                        .getBody()
+                        .getDistanceElementsList()
+                        .get(0)
+                        .getDistanceElementList();
+                for (int i = 0; i < deliveryPoints.size(); ++i) {
+                    deliveryPoints.get(i).setDistanceValue(
+                            distanceElementsList.get(i).getDistance().getDistanceValue()
+                    );
+                    deliveryPoints.get(i).setDistanceTextKm(
+                            distanceElementsList.get(i).getDistance().getDistTextKm()
+                    );
+                }
+            } catch (RestClientException ex) {
+                log.error("Error when getting distances from address", ex);
+                throw new GoogleDistancesCalculationException();
+            }
         }
     }
 

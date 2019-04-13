@@ -1,12 +1,13 @@
 package pl.allegro.braincode.team10.inPost.service.query;
 
-import pl.allegro.braincode.team10.dto.DeliveryPointBasic;
-import pl.allegro.braincode.team10.dto.ListDTO;
+import pl.allegro.braincode.team10.dto.DeliveryPoint;
 import pl.allegro.braincode.team10.dto.SearchDeliveryPointDTO;
 import pl.allegro.braincode.team10.inPost.model.Location;
 
+import java.util.List;
+
 public interface InPostQueryService {
-    ListDTO<DeliveryPointBasic> getDeliveryPoints(
+    List<DeliveryPoint> getDeliveryPoints(
             SearchDeliveryPointDTO searchCriteria,
             Location location);
 }
