@@ -6,6 +6,15 @@ class DeliveryForm extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            deliveryPoint :  {
+                name: 'WAW21',
+                hoursFrom: '08:00',
+                hoursTo: '16:00',
+                address: 'Jana Pawła II 10/413 Warszawa'
+            }
+        }
+
         this.streetInput = React.createRef();
         this.houseNumberInput = React.createRef();
         this.flatNumberInput = React.createRef();
@@ -19,13 +28,6 @@ class DeliveryForm extends Component {
             flatNumber: '413',
             postalCode: '00-133',
             city: 'Warszawa'
-        };
-
-        this.deliveryPoint =  {
-            name: 'WAW21',
-            hoursFrom: '08:00',
-            hoursTo: '16:00',
-            address: 'Jana Pawła II 10/413 Warszawa'
         };
 
         this.deliveryPointParameters = {
@@ -54,6 +56,9 @@ class DeliveryForm extends Component {
         )
     }
 
+    handleDeliveryPointClicked = (pointData) => {
+        this.setState({deliveryPoint: pointData})
+    }
 
     render() {
 
@@ -89,13 +94,14 @@ class DeliveryForm extends Component {
                     <fieldset className="dataBlock" id="defaultDeliveryPoint">
                         <legend> Wybrany punkt odbioru </legend>
                         <div>
-                            {this.deliveryPoint.name} {this.deliveryPoint.hoursFrom}-{this.deliveryPoint.hoursTo} {this.deliveryPoint.address}
+                            {this.state.deliveryPoint.name} {this.state.deliveryPoint.hoursFrom}-
+                            {this.state.deliveryPoint.hoursTo} {this.state.deliveryPoint.address}
                         </div>
                     </fieldset>
 
                     <fieldset className="dataBlock" id="deliveryPoints">
                         <legend>Proponowane punkty odbioru</legend>
-                        <DeliveryPointsTable />
+                        <DeliveryPointsTable onPointClick={this.handleDeliveryPointClicked} />
                     </fieldset>
 
                     <fieldset className="dataBlock" id="deliveryPointParameters">
