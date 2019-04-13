@@ -10,3 +10,12 @@ tr {
 tr:hover {
     background-color:lightblue;
 }
+
+/* .occupancy-bar{
+    background-color: black;
+    width: 10em;
+}
+
+.occupancy-bar > div{
+    background-color: orange;
+} */

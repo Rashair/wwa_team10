@@ -36,10 +36,7 @@ class App extends React.PureComponent {
         let myLat = json.values.length > 0 ? json.values[0].latitude  : json.source_latitude;
         let myLng = json.values.length > 0 ? json.values[0].longitude  : json.source_longitude;
 
-          console.log("abracacadbara");
-          console.log(myLat + " " + myLng); 
-          this.map.current.pan({ lat: myLat, lng: myLng })
-        
+        this.map.current.pan({ lat: myLat, lng: myLng });
       })
   }
 
