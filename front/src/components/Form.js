@@ -81,7 +81,7 @@ class DeliveryForm extends Component {
                     post_code: this.postalCodeInput.current.value,
                     street: this.streetInput.current.value
                 }, 
-                max_distance: this.rangeInput.current.value
+                max_distance: this.rangeInput.current === null ? 1000 : this.rangeInput.current.value
             }
         )
     }
@@ -119,7 +119,24 @@ class DeliveryForm extends Component {
 
                             <input id="city" type="text" defaultValue={this.state.defaultAddress.city} ref={this.cityInput} />
                         </fieldset>
-                        <div class="button-group">
+
+                        {(this.state.showAdvancedDeliverySettings) &&
+                            <div>
+                                <p>Opcje zaawansowane</p>
+                                <fieldset className="addressFormRow">
+                                    <label htmlFor="range">Odległość[m]</label>
+                                    <input id="range" type="number" defaultValue={this.deliveryPointParameters.range} ref={this.rangeInput}
+                                        max="10000" />
+                                </fieldset>
+                                <fieldset className="addressFormRow">
+                                    <label htmlFor="parking"> Parking </label>
+                                    <input id="parking" type="checkbox" defaultChecked={this.deliveryPointParameters.parkingChecked} />
+                                </fieldset>
+                            </div>
+                        }
+
+
+                        <div className="button-group">
                             <button type="button" onClick={this.handleAddressButtonClicked}>Wyszukaj</button>
                             <button type="button" onClick={this.handleAdvancedSearching}>Wyszukiwanie zaawansowane</button>
                         </div>
@@ -137,23 +154,6 @@ class DeliveryForm extends Component {
                         <legend>Proponowane punkty odbioru</legend>
                         <DeliveryPointsTable onPointClick={this.handleDeliveryPointClicked} />
                     </fieldset>
-
-                    {(this.state.showAdvancedDeliverySettings) &&
-        
-
-                    <fieldset className="dataBlock" id="deliveryPointParameters">
-                        <legend>Parametry punktów odbioru</legend>
-                        <fieldset className="formRow">
-                            <label htmlFor="range">Odległość[m]</label>
-                            <input id="range" type="number" defaultValue={this.deliveryPointParameters.range} ref={this.rangeInput}/>
-                        </fieldset>
-                        <fieldset className="formRow">
-                            <label htmlFor="parking"> Parking </label>
-                            <input id="parking" type="checkbox" defaultChecked={this.deliveryPointParameters.parkingChecked} />
-                        </fieldset>
-                        <button type="button">Wyszukaj</button>
-                    </fieldset>
-}
                     <button type="button" > Podsumowanie </button>
                 </form>
             </div>

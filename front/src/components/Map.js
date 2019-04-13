@@ -28,7 +28,7 @@ class Map extends Component {
         return (
             <div>
                 <GoogleMapRendered
-                    containerElement={<div style={{ height: `100%`, width: '100%' }} />}
+                    containerElement={<div style={{ height: `1000px`, width: '100%' }} />}
                     mapElement={<div style={{ height: `100%` }} />}
                 >
                     <Markers markersData={this.props.markersData} />
