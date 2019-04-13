@@ -14,6 +14,9 @@ class DeliveryForm extends Component {
                 address: 'Jana Pawła II 10/413 Warszawa'
             },
 
+            defaultAddress: {},
+            
+
             showAdvancedDeliverySettings: true
         }
 
@@ -42,6 +45,22 @@ class DeliveryForm extends Component {
 
         this.handleChange = this.handleChange.bind(this);
     }
+
+    componentDidMount() {
+        console.log("mounting..")
+        const apiUrl = "http://localhost:8080/client/1/address"
+        fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).then(response => response.json())
+          .then(json => {
+            this.setState({defaultAddress: json})
+            console.log(this.state)
+          })
+    
+      }
 
     handleChange(event) {
         this.setState({ value: event.target.value });
@@ -72,6 +91,7 @@ class DeliveryForm extends Component {
     }
 
     render() {
+        console.log("rendering...")
 
         return (
             <div>
@@ -80,24 +100,24 @@ class DeliveryForm extends Component {
                         <legend> Adres </legend>
                         <fieldset className="addressFormRow">
                             <label htmlFor="street">Ulica</label>
-                            <input id="street" type="text" defaultValue={this.address.street} ref={this.streetInput} />
+                            <input id="street" type="text" defaultValue={this.state.defaultAddress.street} ref={this.streetInput} />
                         </fieldset>
                         <fieldset className="addressFormRow">
                             <label htmlFor="houseNumber">Numer budynku</label>
-                            <input id="houseNumber" type="text" defaultValue={this.address.buildingNumber} ref={this.houseNumberInput} />
+                            <input id="houseNumber" type="text" defaultValue={this.state.defaultAddress.building_number} ref={this.houseNumberInput} />
                         </fieldset>
                         <fieldset className="addressFormRow">
                             <label htmlFor="flatNumber">Numer mieszkania</label>
-                            <input id="flatNumber" type="text" defaultValue={this.address.flatNumber} ref={this.flatNumberInput} />
+                            <input id="flatNumber" type="text" defaultValue={this.state.defaultAddress.flat_number} ref={this.flatNumberInput} />
                         </fieldset>
                         <fieldset className="addressFormRow">
                             <label htmlFor="postalCode">Kod pocztowy</label>
-                            <input id="postalCode" type="text" defaultValue={this.address.postalCode} ref={this.postalCodeInput} />
+                            <input id="postalCode" type="text" defaultValue={this.state.defaultAddress.post_code} ref={this.postalCodeInput} />
                         </fieldset>
                         <fieldset className="addressFormRow">
                             <label htmlFor="city">Miasto</label>
 
-                            <input id="city" type="text" defaultValue={this.address.city} ref={this.cityInput} />
+                            <input id="city" type="text" defaultValue={this.state.defaultAddress.city} ref={this.cityInput} />
                         </fieldset>
                         <div class="button-group">
                             <button type="button" onClick={this.handleAddressButtonClicked}>Wyszukaj</button>
