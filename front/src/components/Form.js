@@ -71,7 +71,7 @@ class DeliveryForm extends Component {
     }
 
     handleAddressButtonClicked() {
-        console.log(this.parkingCheckbox.current)
+        console.log("checkbox state " + (this.parkingCheckbox.current && this.parkingCheckbox.current.checked));
         this.props.onSubmit(
             {
                 address:
@@ -81,9 +81,9 @@ class DeliveryForm extends Component {
                     flat_number: this.flatNumberInput.current.value,
                     post_code: this.postalCodeInput.current.value,
                     street: this.streetInput.current.value,
-                    parking: this.parkingCheckbox.current == null ? false : this.parkingCheckbox.current.checked
                 },
-                max_distance: this.rangeInput.current === null ? 1000 : this.rangeInput.current.value
+                max_distance: this.rangeInput.current === null ? 1000 : this.rangeInput.current.value,
+                parking: this.parkingCheckbox.current == null ? false : this.parkingCheckbox.current.checked
             }
         )
     }
