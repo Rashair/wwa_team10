@@ -14,11 +14,14 @@ import pl.allegro.braincode.team10.inPost.dtoInPost.PointsList;
 import pl.allegro.braincode.team10.inPost.model.Location;
 import pl.allegro.braincode.team10.inPost.service.query.InPostQueryService;
 import pl.allegro.braincode.team10.mapper.PointInPostMapper;
+import pl.allegro.braincode.team10.model.DeliveryPointData;
+import pl.allegro.braincode.team10.repository.DeliveryPointDataRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -26,12 +29,17 @@ public class InPostQueryServiceImpl implements InPostQueryService {
 
     private PointInPostMapper pointInPostMapper;
 
+    private DeliveryPointDataRepository deliveryPointDataRepository;
+
     private final static String ENDPOINT_GET_POINTS = "https://api-shipx-pl.easypack24.net/v1/points";
 
     private final static String DEFAULT_MAX_DISTANCE = "2000";
 
-    public InPostQueryServiceImpl(PointInPostMapper pointInPostMapper) {
+    public InPostQueryServiceImpl(
+            PointInPostMapper pointInPostMapper,
+            DeliveryPointDataRepository deliveryPointDataRepository) {
         this.pointInPostMapper = pointInPostMapper;
+        this.deliveryPointDataRepository = deliveryPointDataRepository;
     }
 
     @Override
@@ -52,7 +60,6 @@ public class InPostQueryServiceImpl implements InPostQueryService {
             }
             ResponseEntity<PointsList> responseEntity = restTemplate.getForEntity(builder.buildAndExpand(new ArrayList<>()).toUri(), PointsList.class);
             PointsList pointsList = responseEntity.getBody();
-
             pointInPostListAll.addAll(pointsList.getPointsList());
             for (int i = 2; i <= pointsList.getTotalPages(); ++i) {
                 builder.replaceQueryParam("page", String.valueOf(i));
@@ -60,11 +67,38 @@ public class InPostQueryServiceImpl implements InPostQueryService {
                 pointInPostListAll.addAll(responseEntity.getBody().getPointsList());
             }
             List<DeliveryPoint> deliveryPointList = this.pointInPostMapper.pointInPostListToDeliveryPointBasicList(pointInPostListAll);
+            fillDataUnavailableInInPostApi(deliveryPointList);
             return deliveryPointList;
         } catch (RestClientException e) {
             log.error("Error when getting list of InPost Delivery places", e);
             throw new SearchingInPostDeliveryException();
         }
+    }
+
+    private void fillDataUnavailableInInPostApi(List<DeliveryPoint> deliveryPointList) {
+        List<String> inPostIDs = deliveryPointList.stream()
+                .map(DeliveryPoint::getName)
+                .collect(Collectors.toList());
+        if (!inPostIDs.isEmpty()) {
+            try {
+                List<DeliveryPointData> deliveryPointDataList = this.deliveryPointDataRepository.findByInPostIDs(inPostIDs);
+                Map<String, DeliveryPointData> deliveryPointDataMap = new HashMap<>();
+                for (DeliveryPointData deliveryPointData : deliveryPointDataList) {
+                    deliveryPointDataMap.put(deliveryPointData.getInpostId(), deliveryPointData);
+                }
+                for (DeliveryPoint deliveryPoint : deliveryPointList) {
+                    deliveryPoint.setDisabledFriendly(deliveryPointDataMap.get(deliveryPoint.getName()).isDisabledFriendly());
+                    deliveryPoint.setOccupancy(deliveryPointDataMap.get(deliveryPoint.getName()).getOccupancy());
+                    deliveryPoint.setParking(deliveryPointDataMap.get(deliveryPoint.getName()).isParking());
+                    deliveryPoint.setWeekendPickup(deliveryPointDataMap.get(deliveryPoint.getName()).isWeekendPickup());
+                    deliveryPoint.setTimeToPickup(deliveryPointDataMap.get(deliveryPoint.getName()).getTimeToPickup());
+                }
+            } catch (Exception ex) {
+                log.error("Error when getting DeliveryPointData from database");
+                throw ex;
+            }
+        }
+
     }
 
     private Map<String, String> parseSearchCriteria(SearchDeliveryPointDTO searchCriteria) {
