@@ -2,15 +2,6 @@ import React, { Component } from 'react';
 import './Table.css'
 
 class DeliveryPointsTable extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.selectetPoint = 
-            {name: 'WAW22', hoursFrom: '08:00', hoursTo: '16:00', address: 'Jana Pawła II 22/413 Warszawa'};
-        
-    }
-
     handleDeliveryPointClick(point) {
         // callback
         this.props.onPointClick(point);
