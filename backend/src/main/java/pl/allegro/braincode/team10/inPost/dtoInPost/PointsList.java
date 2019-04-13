@@ -9,4 +9,7 @@ import java.util.List;
 public class PointsList {
     @JsonProperty("items")
     List<PointInPost> pointsList;
+
+    @JsonProperty("total_pages")
+    Integer totalPages;
 }
