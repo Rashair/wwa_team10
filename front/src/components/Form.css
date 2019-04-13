@@ -1,9 +1,10 @@
 fieldset.dataBlock {
-    width: 30em;
+    width: 80%;
 }
 
 fieldset.formRow {
     border:none;
+    margin:0;
 }
 
 fieldset.formRow > input {
@@ -16,6 +17,6 @@ fieldset.addressFormRow {
 
 fieldset.addressFormRow > label {
     display: inline-block;
-    width: 10em;
+    width: 30%;
     text-align: left;
 }

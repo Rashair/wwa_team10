@@ -31,3 +31,10 @@
     transform: rotate(360deg);
   }
 }
+
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 48% 48%;
+  grid-column-gap: 1%;
+  grid-auto-rows: auto;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Form.css'
 import DeliveryPointsTable from "./Table";
+import DefaultDeliveryPoint from "./DefaultDeliveryPoint";
 
 class DeliveryForm extends React.Component {
     constructor(props) {
@@ -12,13 +13,6 @@ class DeliveryForm extends React.Component {
             flatNumber: '413' ,
             postalCode : '00-133' ,
             city: 'Warszawa'
-        };
-
-        this.defaultDeliveryPoint = {
-            name: 'WAW22',
-            hoursFrom: '08:00',
-            hoursTo: '16:00',
-            address: 'Jana Pawła II 22 Warszawa'
         };
 
         this.deliveryPointParameters = {
@@ -38,6 +32,7 @@ class DeliveryForm extends React.Component {
 
     render() {
         return (
+            <div>
             <form>
                 <fieldset  className="dataBlock" id="address">
                     <legend> Adres </legend>
@@ -66,10 +61,7 @@ class DeliveryForm extends React.Component {
             
                 <fieldset className="dataBlock" id="defaultDeliveryPoint">
                     <legend> Wybrany punkt odbioru </legend>
-                    <div> 
-                        <div>{this.defaultDeliveryPoint.name}</div>
-                        <div>{this.defaultDeliveryPoint.hoursFrom} - {this.defaultDeliveryPoint.hoursTo}</div>
-                    </div>
+                    <DefaultDeliveryPoint />
                 </fieldset>
 
                 <fieldset  className="dataBlock" id="deliveryPoints">
@@ -79,7 +71,6 @@ class DeliveryForm extends React.Component {
 
                 <fieldset  className="dataBlock" id="deliveryPointParameters">
                     <legend>Parametry punktów odbioru</legend>
-
                     <fieldset className="formRow">
                         <label htmlFor="range">Odległość[m]</label>
                         <input id="range" type="number" defaultValue={this.deliveryPointParameters.range} />
@@ -99,11 +90,12 @@ class DeliveryForm extends React.Component {
                         <label htmlFor="parking"> Parking </label>
                         <input id="parking" type="checkbox" defaultChecked={this.deliveryPointParameters.parkingChecked}></input>
                     </fieldset>
-
+                    <button>Wyszukaj</button>
                 </fieldset>
 
                 <button type="submit" value="Submit" > Podsumowanie </button>
             </form>
+            </div>
         );
     }
 }
