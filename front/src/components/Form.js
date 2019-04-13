@@ -77,7 +77,7 @@ class DeliveryForm extends Component {
                         </fieldset>
                         <fieldset className="addressFormRow">
                             <label htmlFor="flatNumber">Numer mieszkania</label>
-                            <input id="flatNumber" type="text" defaultValue={this.address.flatNumber} ref={this.flatNumberInput}/>
+                            <input id="flatNumber" type="text" defaultValue={this.address.flatNumber} ref={this.flatNumberInput} />
                         </fieldset>
                         <fieldset className="addressFormRow">
                             <label htmlFor="postalCode">Kod pocztowy</label>
@@ -123,7 +123,7 @@ class DeliveryForm extends Component {
                         </fieldset>
                         <fieldset className="formRow">
                             <label htmlFor="parking"> Parking </label>
-                            <input id="parking" type="checkbox" defaultChecked={this.deliveryPointParameters.parkingChecked}></input>
+                            <input id="parking" type="checkbox" defaultChecked={this.deliveryPointParameters.parkingChecked} />
                         </fieldset>
                         <button type="button">Wyszukaj</button>
                     </fieldset>
