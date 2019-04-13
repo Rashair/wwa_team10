@@ -15,7 +15,7 @@ class DeliveryForm extends Component {
             },
 
             defaultAddress: {},
-            
+
 
             showAdvancedDeliverySettings: true
         }
@@ -36,30 +36,30 @@ class DeliveryForm extends Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-    }
 
-    componentDidMount() {
         console.log("mounting..")
         const apiUrl = "http://localhost:8080/client/1/address"
         fetch(apiUrl, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
         }).then(response => response.json())
-          .then(json => {
-            this.setState({defaultAddress: json})
-            console.log(this.state)
-          })
-    
-      }
+            .then(json => {
+                this.setState({ defaultAddress: json }, () => {
+                    this.handleAddressButtonClicked();
+                })
+
+            })
+    }
+
 
     handleChange(event) {
         this.setState({ value: event.target.value });
     }
 
     handleAdvancedSearching = () => {
-        this.setState({showAdvancedDeliverySettings:!this.state.showAdvancedDeliverySettings})
+        this.setState({ showAdvancedDeliverySettings: !this.state.showAdvancedDeliverySettings })
     }
 
     handleAddressButtonClicked() {
@@ -72,7 +72,7 @@ class DeliveryForm extends Component {
                     flat_number: this.flatNumberInput.current.value,
                     post_code: this.postalCodeInput.current.value,
                     street: this.streetInput.current.value
-                }, 
+                },
                 max_distance: this.rangeInput.current === null ? 1000 : this.rangeInput.current.value
             }
         )
