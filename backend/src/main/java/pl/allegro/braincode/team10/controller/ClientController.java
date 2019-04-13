@@ -4,34 +4,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.allegro.braincode.team10.allegro.model.*;
+import pl.allegro.braincode.team10.allegro.dto.Address;
+import pl.allegro.braincode.team10.allegro.dto.PointIn;
 import pl.allegro.braincode.team10.service.query.ClientQueryService;
 
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/client")
 public class ClientController {
 
     @Autowired
     public ClientController(ClientQueryService clientQueryService) {
+
         this.clientQueryService = clientQueryService;
     }
 
     private ClientQueryService clientQueryService;
 
-    @GetMapping(value = "/client/")
+    @GetMapping(value = "/{id}/address")
     @ResponseBody
-    public ResponseEntity<ArrayList<DispatchData>> apiGet(@RequestBody() ClientData clientData) {
-        return new ResponseEntity<> (clientQueryService.GetDispatch(clientData), HttpStatus.OK);
+    public ResponseEntity<ArrayList<Address>> apiGet(@PathVariable("id") String clientID) {
+
+        ArrayList<Address> clientAddresses =  clientQueryService.getClientAddress(clientID);
+
+        return new ResponseEntity<> (clientAddresses, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/client/address")
+    @PutMapping(value = "/{id}/address")
     @ResponseBody
-    public ResponseEntity<?> apiPut(@RequestBody() ClientData clientData) {
-        clientQueryService.AddClient(clientData);
+    public ResponseEntity<?> apiPut(@PathVariable("id") String clientID, @RequestBody() PointIn clientAddresses) {
+
+        clientQueryService.addClient(clientID, clientAddresses.getClientAddresses());
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }
