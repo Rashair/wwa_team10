@@ -3,7 +3,7 @@ import './Form.css'
 import DeliveryPointsTable from "./Table";
 import DefaultDeliveryPoint from "./DefaultDeliveryPoint";
 
-class DeliveryForm extends React.Component {
+class DeliveryForm extends Component {
     constructor(props) {
         super(props);
 
@@ -34,7 +34,7 @@ class DeliveryForm extends React.Component {
         return (
             <div>
             <form>
-                <fieldset  className="dataBlock" id="address">
+                <fieldset className="dataBlock" id="address">
                     <legend> Adres </legend>
                         <fieldset className="addressFormRow">
                             <label htmlFor="street">Ulica</label>
@@ -56,7 +56,7 @@ class DeliveryForm extends React.Component {
                             <label htmlFor="city">Miasto</label>
                             <input id="city" type="text" defaultValue={this.address.city} />
                         </fieldset>
-                        <button >Wyszukaj</button>
+                        <button>Wyszukaj</button>
                 </fieldset>
             
                 <fieldset className="dataBlock" id="defaultDeliveryPoint">
@@ -93,7 +93,7 @@ class DeliveryForm extends React.Component {
                     <button>Wyszukaj</button>
                 </fieldset>
 
-                <button type="submit" value="Submit" > Podsumowanie </button>
+                <button> Podsumowanie </button>
             </form>
             </div>
         );

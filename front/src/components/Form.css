@@ -4,7 +4,6 @@ fieldset.dataBlock {
 
 fieldset.formRow {
     border:none;
-    margin:0;
 }
 
 fieldset.formRow > input {

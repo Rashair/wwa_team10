@@ -1,3 +1,7 @@
-#deliveryPointsTable > tr {
-    border: 1px solid black;
+#deliveryPointsTable{
+    border-collapse: collapse;
 }
+
+#deliveryPointsTable > tbody > tr {
+}
+

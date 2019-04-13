@@ -20,8 +20,8 @@ class DeliveryPointsTable extends React.Component {
         );
 
         return (
-         <table>
-             <tbody id="deliveryPointsTable">
+         <table id="deliveryPointsTable">
+             <tbody>
                 {this.items}
              </tbody>
          </table>
