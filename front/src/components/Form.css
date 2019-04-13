@@ -19,3 +19,6 @@ fieldset.addressFormRow > label {
     width: 30%;
     text-align: left;
 }
+#defaultDeliveryPoint{
+    user-select: none;
+}

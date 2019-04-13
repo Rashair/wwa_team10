@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Form.css'
 import DeliveryPointsTable from "./Table";
-import DefaultDeliveryPoint from "./DefaultDeliveryPoint";
 
 class DeliveryForm extends Component {
     constructor(props) {
@@ -20,6 +19,13 @@ class DeliveryForm extends Component {
             flatNumber: '413',
             postalCode: '00-133',
             city: 'Warszawa'
+        };
+
+        this.deliveryPoint =  {
+            name: 'WAW21',
+            hoursFrom: '08:00',
+            hoursTo: '16:00',
+            address: 'Jana Pawła II 10/413 Warszawa'
         };
 
         this.deliveryPointParameters = {
@@ -65,8 +71,8 @@ class DeliveryForm extends Component {
                             <input id="houseNumber" type="text" defaultValue={this.address.buildingNumber} ref={this.houseNumberInput} />
                         </fieldset>
                         <fieldset className="addressFormRow">
-                            <label htmlFor="houseNumber">Numer mieszkania</label>
-                            <input id="flatNumber" type="text" defaultValue={this.address.flatNumber} ref={this.flatNumberInput} />
+                            <label htmlFor="flatNumber">Numer mieszkania</label>
+                            <input id="flatNumber" type="text" defaultValue={this.address.flatNumber} />
                         </fieldset>
                         <fieldset className="addressFormRow">
                             <label htmlFor="postalCode">Kod pocztowy</label>
@@ -80,14 +86,11 @@ class DeliveryForm extends Component {
                         <button type="button" onClick={this.handleAddressButtonClicked} >Wyszukaj</button>
                     </fieldset>
 
-                <fieldset className="dataBlock" id="defaultDeliveryPoint">
-                    <legend> Wybrany punkt odbioru </legend>
-                    <DefaultDeliveryPoint />
-                </fieldset>
-
                     <fieldset className="dataBlock" id="defaultDeliveryPoint">
                         <legend> Wybrany punkt odbioru </legend>
-                        <DefaultDeliveryPoint />
+                        <div>
+                            {this.deliveryPoint.name} {this.deliveryPoint.hoursFrom}-{this.deliveryPoint.hoursTo} {this.deliveryPoint.address}
+                        </div>
                     </fieldset>
 
                     <fieldset className="dataBlock" id="deliveryPoints">

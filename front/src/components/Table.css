@@ -2,6 +2,11 @@
     border-collapse: collapse;
 }
 
-#deliveryPointsTable > tbody > tr {
+tr {
+    cursor: pointer;
+    user-select: none;
 }
 
+tr:hover {
+    background-color:lightblue;
+}

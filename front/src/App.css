@@ -40,7 +40,7 @@
 }
 
 fieldset > button {
-  width: 95%;
+  width: 50%;
   display: block;
   margin:auto;
 }
@@ -52,11 +52,6 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-}
-
-input[type=checkbox] {
-  border: 1px solid #ccc;
-  border-radius: 4px;
 }
 
 button {
