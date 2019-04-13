@@ -8,17 +8,17 @@ class DeliveryForm extends React.Component {
 
         this.address = {
             street: 'Jana Pawła II',
-            houseNumber: '22/13' ,
+            buildingNumber: '22',
+            flatNumber: '413' ,
             postalCode : '00-133' ,
-            city: 'Warszawa',
-            phoneNumber: '+48 516 942 392' 
+            city: 'Warszawa'
         };
 
         this.defaultDeliveryPoint = {
             name: 'WAW22',
             hoursFrom: '08:00',
             hoursTo: '16:00',
-            address: 'Jana Pawła II 22/419 Warszawa'
+            address: 'Jana Pawła II 22 Warszawa'
         };
 
         this.deliveryPointParameters = {
@@ -38,19 +38,35 @@ class DeliveryForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form>
                 <fieldset  className="dataBlock" id="address">
                     <legend> Adres </legend>
-                    <div> {this.address.street} </div>
-                    <div> {this.address.houseNumber} </div>
-                    <div> {this.address.postalCode} </div>
-                    <div> {this.address.city} </div>
-                    <div> {this.address.phoneNumber} </div>
+                        <fieldset className="addressFormRow">
+                            <label htmlFor="street">Ulica</label>
+                            <input id="street" type="text" defaultValue={this.address.street} />
+                        </fieldset>
+                        <fieldset className="addressFormRow">
+                            <label htmlFor="houseNumber">Numer budynku</label>
+                            <input id="houseNumber" type="text" defaultValue={this.address.buildingNumber} />
+                        </fieldset>
+                        <fieldset className="addressFormRow">
+                            <label htmlFor="houseNumber">Numer mieszkania</label>
+                            <input id="houseNumber" type="text" defaultValue={this.address.flatNumber} />
+                        </fieldset>
+                        <fieldset className="addressFormRow">
+                            <label htmlFor="postalCode">Kod pocztowy</label>
+                            <input id="postalCode" type="text" defaultValue={this.address.postalCode} />
+                        </fieldset>
+                        <fieldset className="addressFormRow">
+                            <label htmlFor="city">Miasto</label>
+                            <input id="city" type="text" defaultValue={this.address.city} />
+                        </fieldset>
+                        <button >Wyszukaj</button>
                 </fieldset>
-
+            
                 <fieldset className="dataBlock" id="defaultDeliveryPoint">
                     <legend> Wybrany punkt odbioru </legend>
-                    <div onClick=""> 
+                    <div> 
                         <div>{this.defaultDeliveryPoint.name}</div>
                         <div>{this.defaultDeliveryPoint.hoursFrom} - {this.defaultDeliveryPoint.hoursTo}</div>
                     </div>
