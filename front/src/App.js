@@ -11,12 +11,20 @@ class App extends React.PureComponent {
     this.handleAddressForm=this.handleAddressForm.bind(this);
   }
 
-  
-
   state = {
-    values: []
-  }
+    values: [],
+    //{name: "POP-KRA22", latitude: 50.04901, longitude: 19.94334, address: {…}, opening_hours: "PN-PT 10-18 SB 10-14"}
+    deliveryPoints : [
+      // {name: 'WAW21', hoursFrom: '08:00', hoursTo: '16:00', address: 'Jana Pawła II 10/413 Warszawa'},
+      // {name: 'WAW22', hoursFrom: '08:00', hoursTo: '16:00', address: 'Jana Pawła II 22/413 Warszawa'},
+      // {name: 'WAW23', hoursFrom: '08:00', hoursTo: '16:00', address: 'XXXXXXXXXXXXXXXXXXXXX'},
+      // {name: 'WAW24', hoursFrom: '08:00', hoursTo: '16:00', address: 'YYYYYYYYYYYYYYYYYYYYYY'},
+      // {name: 'WAW25', hoursFrom: '21:00', hoursTo: '23:00', address: 'ZZZZZZZZZZZZZZZZ'}
+    ]
+  };
 
+
+  
   componentDidMount() {
     // const apiUrl = "http://localhost:8080/delivery"
     // fetch(apiUrl, {
@@ -55,10 +63,11 @@ class App extends React.PureComponent {
       body: JSON.stringify(formData)
     }).then(response => response.json())
       .then(json => {
-        this.setState(json)
-        console.log(this.state)
+        this.setState({values:json.values, deliveryPoints:json.values}); 
       })
 
+      
+      //alert(this.DeliveryFormElement.current.state.deliveryPoints[0]);
   }
 
   render() {
@@ -66,8 +75,7 @@ class App extends React.PureComponent {
     return (
       <div className="content-wrapper">
         <Map markersData={this.state.values} />
-        <DeliveryForm onSubmit={this.handleAddressForm} />
-
+        <DeliveryForm onSubmit={this.handleAddressForm} pointsData={this.state.deliveryPoints} />
       </div>
     )
   }

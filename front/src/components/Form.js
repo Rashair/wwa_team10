@@ -17,7 +17,7 @@ class DeliveryForm extends Component {
             defaultAddress: {},
             
 
-            showAdvancedDeliverySettings: true
+            showAdvancedDeliverySettings: false
         }
 
         this.streetInput = React.createRef();
@@ -152,7 +152,7 @@ class DeliveryForm extends Component {
 
                     <fieldset className="dataBlock" id="deliveryPoints">
                         <legend>Proponowane punkty odbioru</legend>
-                        <DeliveryPointsTable onPointClick={this.handleDeliveryPointClicked} />
+                        <DeliveryPointsTable pointsData={this.props.pointsData} onPointClick={this.handleDeliveryPointClicked} />
                     </fieldset>
                     <button type="button" > Podsumowanie </button>
                 </form>
