@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ClientQueryService {
 
-    void addClient(String clientID, List<Address> clientAddresses);
+    void addClient(String clientID, Address clientAddresses);
 
-    ArrayList<Address> getClientAddress(String clientID);
+    Address getClientAddress(String clientID);
 }

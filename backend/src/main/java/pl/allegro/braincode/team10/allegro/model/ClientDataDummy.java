@@ -35,10 +35,7 @@ public class ClientDataDummy {
         clientAddress.setPostCode(post_code.get(clientID % post_code.size()));
         clientAddress.setStreet(streets.get(clientID % streets.size()));
 
-        ArrayList<Address> clientAddresses = new ArrayList<>();
-        clientAddresses.add(clientAddress);
-
-        clientData.setClientAddresses(clientAddresses);
+        clientData.setClientAddresses(clientAddress);
 
         return clientData;
     }

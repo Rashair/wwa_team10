@@ -22,22 +22,22 @@ public class ClientQueryServiceImpl implements ClientQueryService {
         }
     }
 
-    public void addClient(String clientID, List<Address> clientAddresses) {
+    public void addClient(String clientID, Address clientAddresses) {
 
         ClientData clientData = new ClientData();
-        clientData.setClientAddresses(new ArrayList<>(clientAddresses));
+        clientData.setClientAddresses(clientAddresses);
         clientData.setClientID(clientID);
 
         this.clients.add(clientData);
     }
 
-    public ArrayList<Address> getClientAddress(String clientID){
+    public Address getClientAddress(String clientID){
         for (ClientData cd : clients) {
             if(cd.getClientID().equals(clientID)){
                 return cd.getClientAddresses();
             }
         }
-        return new ArrayList<>();
+        return new Address();
     }
 
     private ArrayList<ClientData> clients = new ArrayList<>();

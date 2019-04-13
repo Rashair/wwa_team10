@@ -25,9 +25,9 @@ public class ClientController {
 
     @GetMapping(value = "/{id}/address")
     @ResponseBody
-    public ResponseEntity<ArrayList<Address>> getClientAddresses(@PathVariable("id") String clientID) {
+    public ResponseEntity<Address> getClientAddresses(@PathVariable("id") String clientID) {
 
-        ArrayList<Address> clientAddresses =  clientQueryService.getClientAddress(clientID);
+        Address clientAddresses =  clientQueryService.getClientAddress(clientID);
 
         return new ResponseEntity<> (clientAddresses, HttpStatus.OK);
     }
