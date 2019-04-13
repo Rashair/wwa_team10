@@ -7,12 +7,14 @@ class DeliveryForm extends Component {
         super(props);
 
         this.state = {
-            deliveryPoint :  {
+            deliveryPoint: {
                 name: 'WAW21',
                 hoursFrom: '08:00',
                 hoursTo: '16:00',
                 address: 'Jana Pawła II 10/413 Warszawa'
-            }
+            },
+
+            showAdvancedDeliverySettings: true
         }
 
         this.streetInput = React.createRef();
@@ -47,17 +49,20 @@ class DeliveryForm extends Component {
     handleAddressButtonClicked() {
         this.props.onSubmit(
             {
-                city: this.cityInput.current.value,
-                building_number: this.houseNumberInput.current.value,
-                flat_number: this.flatNumberInput.current.value,
-                post_code: this.postalCodeInput.current.value,
-                street: this.streetInput.current.value
+                address:
+                {
+                    city: this.cityInput.current.value,
+                    building_number: this.houseNumberInput.current.value,
+                    flat_number: this.flatNumberInput.current.value,
+                    post_code: this.postalCodeInput.current.value,
+                    street: this.streetInput.current.value
+                }
             }
         )
     }
 
     handleDeliveryPointClicked = (pointData) => {
-        this.setState({deliveryPoint: pointData})
+        this.setState({ deliveryPoint: pointData })
     }
 
     render() {
@@ -85,7 +90,7 @@ class DeliveryForm extends Component {
                         </fieldset>
                         <fieldset className="addressFormRow">
                             <label htmlFor="city">Miasto</label>
-                            
+
                             <input id="city" type="text" defaultValue={this.address.city} ref={this.cityInput} />
                         </fieldset>
                         <button type="button" onClick={this.handleAddressButtonClicked} >Wyszukaj</button>
@@ -103,6 +108,9 @@ class DeliveryForm extends Component {
                         <legend>Proponowane punkty odbioru</legend>
                         <DeliveryPointsTable onPointClick={this.handleDeliveryPointClicked} />
                     </fieldset>
+
+                    {(this.state.showAdvancedDeliverySettings) &&
+        
 
                     <fieldset className="dataBlock" id="deliveryPointParameters">
                         <legend>Parametry punktów odbioru</legend>
@@ -127,7 +135,7 @@ class DeliveryForm extends Component {
                         </fieldset>
                         <button type="button">Wyszukaj</button>
                     </fieldset>
-
+}
                     <button type="button" > Podsumowanie </button>
                 </form>
             </div>

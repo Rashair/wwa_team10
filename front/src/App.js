@@ -18,14 +18,18 @@ class App extends React.PureComponent {
   }
 
   componentDidMount() {
-    const apiUrl = "http://www.mocky.io/v2/5cb124c73300000e0e571ff9";
-
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(json => {
-        this.setState(json)
-        console.log(this.state)
-      })
+    // const apiUrl = "http://localhost:8080/delivery"
+    // fetch(apiUrl, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(formData)
+    // }).then(response => response.json())
+    //   .then(json => {
+    //     this.setState(json)
+    //     console.log(this.state)
+    //   })
 
   }
 
@@ -39,8 +43,10 @@ class App extends React.PureComponent {
     //   })
 
 
-    const apiUrl = "http://www.mocky.io/v2/5cb15b093300004a1257204d";
+    //const apiUrl = "http://www.mocky.io/v2/5cb15b093300004a1257204d";
 
+    console.log(JSON.stringify(formData))
+    const apiUrl = "http://localhost:8080/delivery"
     fetch(apiUrl, {
       method: "POST",
       headers: {
