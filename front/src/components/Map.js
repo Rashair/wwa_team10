@@ -1,36 +1,36 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import PropTypes from 'prop-types'
+import Markers from './Markers.js'
+
+
 class Map extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
+        console.log(props)
     }
     static propTypes = {
-        markersPositions: PropTypes.arrayOf(PropTypes.shape({
+        markersData: PropTypes.arrayOf(PropTypes.shape({
             lat: PropTypes.number.isRequired,
             lng: PropTypes.number.isRequired
         })).isRequired
     }
 
     render() {
-        
-        console.log(this.props.markersPositions)
-        const markers = this.props.markersPositions.map(markerPosition => {
-            
-            return <Marker position={markerPosition} key={`${markerPosition.lat}/${markerPosition.lng}`}/>
-        })
 
+        console.log(this.props.markersData)
+        
         const GoogleMapRendered = withGoogleMap(props => (
             <GoogleMap
                 defaultCenter={{ lat: 52.2297, lng: 21.0122 }}
                 defaultZoom={13}
             >
-                {markers}
-    
-                
+                <Markers markersData={this.props.markersData} />
             </GoogleMap>
         ));
+
+
         return (
             <div>
                 <GoogleMapRendered
@@ -39,9 +39,6 @@ class Map extends Component {
                 />
             </div>
         );
-
-
     }
-
 };
 export default Map;
