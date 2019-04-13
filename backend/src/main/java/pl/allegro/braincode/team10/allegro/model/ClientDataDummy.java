@@ -15,7 +15,7 @@ public class ClientDataDummy {
     public ClientDataDummy(){
         clientID = 0;
 
-        cities.add("Warsaw");
+        cities.add("Warszawa");
 
         streets.add("Jana Pawla 2");
 
