@@ -24,6 +24,6 @@ front/.pnp.js
 
 .vscode
 
-./backend/.idea/
-./backend/target/
+backend/.idea/
+backend/target/
 

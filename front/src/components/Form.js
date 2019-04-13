@@ -22,6 +22,7 @@ class DeliveryForm extends Component {
         this.flatNumberInput = React.createRef();
         this.postalCodeInput = React.createRef();
         this.cityInput = React.createRef();
+        this.rangeInput = React.createRef();
 
         this.handleAddressButtonClicked = this.handleAddressButtonClicked.bind(this)
         this.address = {
@@ -56,7 +57,8 @@ class DeliveryForm extends Component {
                     flat_number: this.flatNumberInput.current.value,
                     post_code: this.postalCodeInput.current.value,
                     street: this.streetInput.current.value
-                }
+                }, 
+                max_distance: this.rangeInput.current.value
             }
         )
     }
@@ -116,7 +118,7 @@ class DeliveryForm extends Component {
                         <legend>Parametry punktów odbioru</legend>
                         <fieldset className="formRow">
                             <label htmlFor="range">Odległość[m]</label>
-                            <input id="range" type="number" defaultValue={this.deliveryPointParameters.range} />
+                            <input id="range" type="number" defaultValue={this.deliveryPointParameters.range} ref={this.rangeInput}/>
                         </fieldset>
                         <fieldset className="formRow">
                             <legend>Godziny otwarcia</legend>
